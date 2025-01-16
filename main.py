@@ -4,6 +4,7 @@ from DemandSimulations import run_demand_simulation
 from optimisation import optimize_coefficients
 import pandas as pd
 import matplotlib.pyplot as plt
+from FourierAnalysis import analyze_fourier
 
 production_factor = 1.05
 

@@ -55,7 +55,7 @@ def analyze_power_limits_derivative():
 
     print("Power limits analysis completed.")
 
-    #ensure it runs when main is executed (Doesnt work though for some reason, as of 16/1)
+#ensure it runs when main is executed (Doesnt work though for some reason, as of 16/1)
 def main():
     analyze_power_limits_derivative()
 
