@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
+from optimisation import days_to_months_exact
 
 
 def run_solar_simulation():
@@ -12,16 +13,21 @@ def run_solar_simulation():
     print("Running solar simulation...")
 
     #define monthly solar rad (avg + stdev)
-    months = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    months = np.array([0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
 
     #polynomial equations are inputted directly
     avg_solar_radiation = 2.9668 * months**3 - 110.07 * months**2 + 966.25 * months - 848.84
     std_solar_radiation = 1.1211 * months**3 - 39.068 * months**2 + 331.93 * months - 236.89
 
     #interpolate vals across 365 d ays
-    days = np.linspace(1, 12, 365) #spread monthly across 365 days
-    avg_solar_radiation_daily = interp1d(months, avg_solar_radiation, kind='cubic')(days)
-    std_solar_radiation_daily = interp1d(months, std_solar_radiation, kind='cubic')(days)
+    days = np.arange(1, 366) #generate days 1-366
+    exact_months = days_to_months_exact(days) #convert days to exact fractional months
+    exact_months = np.clip(exact_months, 0, 12) #clamp exact months to the interpolation range
+
+    avg_solar_radiation_daily = interp1d(months, avg_solar_radiation, kind='linear')(exact_months)
+    std_solar_radiation_daily = interp1d(months, std_solar_radiation, kind='linear')(exact_months)
+
+    std_solar_radiation_daily = np.maximum(std_solar_radiation_daily, 0)
 
     #generate 5 simulations
     simulations = {}
