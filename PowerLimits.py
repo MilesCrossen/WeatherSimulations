@@ -2,14 +2,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Ensure the TkAgg backend is used
+#ensure the TkAgg backend is used
 import matplotlib
 matplotlib.use("TkAgg")
 
 def analyze_power_limits_derivative():
-    """
-    Analyze the maximum power to add or remove from the grid for each simulation based on the derivative of the energy balance curve.
-    """
     print("Analyzing power limits using derivatives for each simulation...")
 
     #load

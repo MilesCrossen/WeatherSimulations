@@ -1,33 +1,43 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.interpolate import interp1d
-from optimisation import days_to_months_exact
-
 
 def run_solar_simulation():
-    """
-    Simulates daily solar radiation for a full year, generates visualizations for the 5 final simulations,
-    and saves the simulated dataset to a CSV file.
-    """
     print("Running solar simulation...")
 
-    #define monthly solar rad (avg + stdev)
-    months = np.array([0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    #generate days 1-366
+    days = np.arange(1, 366)
 
-    #polynomial equations are inputted directly
-    avg_solar_radiation = 2.9668 * months**3 - 110.07 * months**2 + 966.25 * months - 848.84
-    std_solar_radiation = 1.1211 * months**3 - 39.068 * months**2 + 331.93 * months - 236.89
+    #average solar radiation equation (fourier transform)
+    avg_solar_radiation_daily = (
+            974.988895 * np.cos(2 * np.pi * 0.000000 * days + -0.000000) +
+            420.293533 * np.cos(2 * np.pi * -0.002732 * days + 2.903370) +
+            420.293533 * np.cos(2 * np.pi * 0.002732 * days + -2.903370) +
+            30.446476 * np.cos(2 * np.pi * -0.005464 * days + -1.495144) +
+            30.446476 * np.cos(2 * np.pi * 0.005464 * days + 1.495144)
+    )
 
-    #interpolate vals across 365 d ays
-    days = np.arange(1, 366) #generate days 1-366
-    exact_months = days_to_months_exact(days) #convert days to exact fractional months
-    exact_months = np.clip(exact_months, 0, 12) #clamp exact months to the interpolation range
+    #standard deviation solar radiation equation (fourier transform)
+    std_solar_radiation_daily = (
+            356.043602 * np.cos(2 * np.pi * 0.000000 * days + -0.000000) +
+            136.183315 * np.cos(2 * np.pi * -0.002732 * days + 2.865705) +
+            136.183315 * np.cos(2 * np.pi * 0.002732 * days + -2.865705) +
+            13.607234 * np.cos(2 * np.pi * -0.005464 * days + -1.953777) +
+            13.607234 * np.cos(2 * np.pi * 0.005464 * days + 1.953777)
+    )
 
-    avg_solar_radiation_daily = interp1d(months, avg_solar_radiation, kind='linear')(exact_months)
-    std_solar_radiation_daily = interp1d(months, std_solar_radiation, kind='linear')(exact_months)
-
+    #ensure standard deviation is non-negative
     std_solar_radiation_daily = np.maximum(std_solar_radiation_daily, 0)
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(range(1, 366), avg_solar_radiation_daily, label="Average Solar Radiation", color="blue")
+    plt.plot(range(1, 366), std_solar_radiation_daily, label="Standard Deviation", color="orange")
+    plt.xlabel("Day of the Year")
+    plt.ylabel("Radiation (J/cm^2)")
+    plt.title("Average and Standard Deviation of Solar Radiation")
+    plt.legend()
+    plt.grid()
+    plt.show()
 
     #generate 5 simulations
     simulations = {}

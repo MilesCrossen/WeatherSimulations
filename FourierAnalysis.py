@@ -6,6 +6,7 @@ matplotlib.use('TkAgg') #tkagg fixes rendering errors for me
 import matplotlib.pyplot as plt
 from scipy.fft import fft, ifft
 
+top_n = 5
 
 #load and preprocess data
 def load_and_preprocess_data(file_path, column_name):
@@ -44,7 +45,7 @@ def perform_fourier_transform(signal):
 
 
 #reconstruct signal with top n components
-def reconstruct_signal_with_top_components(fourier_coefficients, num_days, top_n=5):
+def reconstruct_signal_with_top_components(fourier_coefficients, num_days, top_n):
     #compute amplitudes of the fourier coefficients
     amplitudes = np.abs(fourier_coefficients) / num_days
 
@@ -61,9 +62,9 @@ def reconstruct_signal_with_top_components(fourier_coefficients, num_days, top_n
     return reconstructed_signal, significant_indices
 
 
-# print fourier transform eqn for top n components
+#print fourier transform eqn for top n components
 def print_fourier_equation(fourier_coefficients, num_days, significant_indices):
-    frequencies = np.fft.fftfreq(num_days) #frequency values
+    frequencies = np.fft.fftfreq(num_days) #frequency vals
     equation_terms = []
 
     #loop through the significant indices
@@ -71,7 +72,7 @@ def print_fourier_equation(fourier_coefficients, num_days, significant_indices):
         amplitude = np.abs(fourier_coefficients[k]) / num_days
         phase = np.angle(fourier_coefficients[k])
         frequency = frequencies[k]
-        term = f"{amplitude:.2f} * cos(2π * {frequency:.2f} * t + {phase:.2f})"
+        term = f"{amplitude:.6f} * cos(2π * {frequency:.6f} * t + {phase:.6f})"
         equation_terms.append(term)
 
     #combine terms into an equation
@@ -129,12 +130,12 @@ def analyze_fourier(file_path, column_name):
 
     #reconstruct average signal using top components
     avg_reconstructed_signal, avg_significant_indices = reconstruct_signal_with_top_components(
-        avg_fourier_coefficients, num_days, top_n=5
+        avg_fourier_coefficients, num_days, top_n
     )
 
     #reconstruct standard deviation signal using top components
     std_reconstructed_signal, std_significant_indices = reconstruct_signal_with_top_components(
-        std_fourier_coefficients, num_days, top_n=5
+        std_fourier_coefficients, num_days, top_n
     )
 
     #print fourier transform equation for the average signal

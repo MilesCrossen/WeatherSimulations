@@ -1,25 +1,40 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.interpolate import interp1d
-from optimisation import days_to_months_exact
-
 
 def run_wind_simulation():
     print("Running wind simulation...")
 
-    #define monthly wind production and stdev
-    months = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-    wind_capacity = 0.0029 * months**3 + 0.0321 * months**2 - 0.9065 * months + 13.076
-    wind_std_dev = 0.0031 * months**3 - 0.0038 * months**2 - 0.473 * months + 5.7388
+    days = np.arange(1, 366)  # Generate days 1-366
 
-    #interpolate vals across 365 days
-    days = np.arange(1, 366) #generate days 1-366
-    exact_months = days_to_months_exact(days) #convert days to exact fractional months
-    exact_months = np.clip(exact_months, 0, 12) #clamp exact months to the interpolation range
+    #average wind speed squared equation
+    wind_capacity_daily = (
+            125.528148 * np.cos(2 * np.pi * 0.000000 * days + -0.000000) +
+            18.344844 * np.cos(2 * np.pi * -0.002732 * days + 0.249556) +
+            18.344844 * np.cos(2 * np.pi * 0.002732 * days + -0.249556) +
+            3.719645 * np.cos(2 * np.pi * 0.117486 * days + -0.565647) +
+            3.719645 * np.cos(2 * np.pi * -0.117486 * days + 0.565647)
+    )
 
-    wind_capacity_daily = interp1d(months, wind_capacity, kind='cubic')(exact_months)
-    wind_std_dev_daily = interp1d(months, wind_std_dev, kind='cubic')(exact_months)
+    #standard deviation of wind speed squared equation
+    wind_std_dev_daily = (
+            95.800535 * np.cos(2 * np.pi * 0.000000 * days + -0.000000) +
+            17.261051 * np.cos(2 * np.pi * -0.002732 * days + 0.362807) +
+            17.261051 * np.cos(2 * np.pi * 0.002732 * days + -0.362807) +
+            3.840067 * np.cos(2 * np.pi * 0.117486 * days + -0.557912) +
+            3.840067 * np.cos(2 * np.pi * -0.117486 * days + 0.557912)
+    )
+
+    #plotting average and standard deviation of wind speed squared
+    plt.figure(figsize=(10, 6))
+    plt.plot(days, wind_capacity_daily, label="Average Wind Speed Squared", color="blue")
+    plt.plot(days, wind_std_dev_daily, label="Standard Deviation", color="orange")
+    plt.xlabel("Day of the Year")
+    plt.ylabel("Wind Speed Squared (Knots^2)")
+    plt.title("Average and Standard Deviation of Wind Speed Squared")
+    plt.legend()
+    plt.grid()
+    plt.show()
 
     #gen 5 simulations
     simulations = {}
