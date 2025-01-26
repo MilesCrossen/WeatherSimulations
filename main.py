@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from FourierAnalysis import analyze_fourier
 
-production_factor = 1.00
+production_factor = 1.05
 
 def compare_multiple_simulations(w_opt, s_opt):
     #compares running sum of 5 simulations of scaled optimized power production and plots
