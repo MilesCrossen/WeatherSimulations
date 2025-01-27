@@ -54,14 +54,10 @@ However, this should be improved at a later date by using simulations with a muc
 we do, provides data on the average energy that must be added/removed over the course of a full day in the worst case scenario, but real-world data might fluctuate very quickly and intensely within smaller
 portions of a single day.
 
-A few future goals as of the 18th:
+Future goals as of the 27th:
+Automatically output optimised parameters, as well as their name, to a csv. Will require each function to be named (weather station)(type) instead of y1, y2, y3 etc.
 
-Print equations for fourier transforms of scaled production from each renewable energy source, their sum, and the fourier transform of demand.
-
-Add data for all major Met Éireann weather stations that have recorded solar radiation and wind speed data over sustained periods -> list provided here: https://www.met.ie/climate/weather-observing-stations 
-
-Figure out and implement a method for letting the programme choose optimal locations to implement renewables installations - ideally the programme should provide a diverse list of suggestions for
-renewables installations
+Figure out how to factor in things like cost and penalise wind installation locations with poor overall wind speeds but good patterns. Do the same w/solar; it is important that locations where installations may be more or less affordable are counted to some extent in the programme.
 
 Provide option to automatically update fourier transform equations inside relevant scripts when a new optimal equation is found.
 
