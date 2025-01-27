@@ -160,5 +160,5 @@ def analyze_fourier(file_path, column_name):
 #run fourier analysis when this file is executed
 if __name__ == "__main__":
     file_path = "WeatherDunsanyProcessed.csv" #replace with the actual file path
-    column_name = "glorad" #replace with the column name to analyze
+    column_name = "wdsp^3" #replace with the column name to analyze
     analyze_fourier(file_path, column_name)
