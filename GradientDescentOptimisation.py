@@ -180,7 +180,7 @@ for i in range(iterations):
     error = predicted - D
 
     #compute gradient
-    gradient = 2 * np.dot(error, Y.T) / len(days)
+    gradient = np.dot(np.sign(error), Y.T) / len(days)
 
     #ADAM updating.
     m = beta1 * m + (1 - beta1) * gradient #momentum update using general formula
@@ -193,8 +193,8 @@ for i in range(iterations):
 
     #every 1k iterations, log and print progress
     if i % 1000 == 0:
-        mse = np.mean(error ** 2)
-        print(f"Iteration {i}, MSE: {mse:.5f}")
+        absolute_error = np.sum(np.abs(error))
+        print(f"Iteration {i}, Absolute Error: {absolute_error:.5f}")
 
 #final coefficients
 print("Final coefficients:", coefficients)
