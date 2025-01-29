@@ -23,11 +23,11 @@ def y2(days):
 #athenry solar
 
 def y3(days):
-    return (49.356367 * np.cos(2 * np.pi * 0.000000 * days + -0.000000) +
-            8.446029 * np.cos(2 * np.pi * -0.002732 * days + 0.368008) +
-            8.446029 * np.cos(2 * np.pi * 0.002732 * days + -0.368008) +
-            1.625258 * np.cos(2 * np.pi * -0.021858 * days + -0.770087) +
-            1.625258 * np.cos(2 * np.pi * 0.021858 * days + 0.770087))
+    return (440.594246 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 116.128232 * np.cos(2 * np.pi * -0.002732 * days + 0.358378)
+            + 116.128232 * np.cos(2 * np.pi * 0.002732 * days + -0.358378)
+            + 19.283119 * np.cos(2 * np.pi * 0.117486 * days + -0.447141)
+            + 19.283119 * np.cos(2 * np.pi * -0.117486 * days + 0.447141))
 #ballyhaise wind^3
 
 def y4(days):
@@ -71,11 +71,11 @@ def y8(days):
 #claremorris solar
 
 def y9(days):
-    return (76.143712 * np.cos(2 * np.pi * 0.000000 * days + -0.000000) +
-            12.194546 * np.cos(2 * np.pi * -0.002732 * days + 0.396359) +
-            12.194546 * np.cos(2 * np.pi * 0.002732 * days + -0.396359) +
-            2.272962 * np.cos(2 * np.pi * -0.005464 * days + 1.012486) +
-            2.272962 * np.cos(2 * np.pi * 0.005464 * days + -1.012486))
+    return (846.175383 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 213.856719 * np.cos(2 * np.pi * -0.002732 * days + 0.395644)
+            + 213.856719 * np.cos(2 * np.pi * 0.002732 * days + -0.395644)
+            + 44.396759 * np.cos(2 * np.pi * -0.005464 * days + 0.902254)
+            + 44.396759 * np.cos(2 * np.pi * 0.005464 * days + -0.902254))
 #dunsany wind^3
 
 def y10(days):
@@ -159,7 +159,7 @@ D = d(days) #demand for each day
 
 #gradient descent parameters
 learning_rate = 0.01 #base learning rate (delta x)
-iterations = 50000 #more iterations = more accurate but requires more computing
+iterations = 500000 #more iterations = more accurate but requires more computing
 #coefficients = np.ones(50) #initialise coefficients (y1...y50) to 1
 coefficients = np.ones(50)
 
@@ -194,7 +194,7 @@ for i in range(iterations):
     #Y.T is transport of Y just to make it work for multiplication.
     #this measures how much each basis veector contributes to overall prediction error
 
-    lambda_penalty = 0 #if this parameter is higher, it penalises areas w/lower average
+    lambda_penalty = 0.5 #if this parameter is higher, it penalises areas w/lower average
     #production more, causing the programme to recommend installations in areas with more
     #power production capacity
     gradient += lambda_penalty * coefficients / (average_values + 1e-6) #penalisation term

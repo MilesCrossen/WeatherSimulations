@@ -21,6 +21,8 @@ def load_and_preprocess_data(file_path, column_name):
 
     #drop rows with missing/invalid values in column
     data = data.dropna(subset=[column_name])
+    #also ignore 0s
+    data = data[data[column_name] != 0]
 
     #extract day of year (ignoring leap years to simplify)
     data['Day_of_Year'] = data['Date'].dt.strftime('%m-%d') #extract MM-DD for grouping
@@ -159,6 +161,6 @@ def analyze_fourier(file_path, column_name):
 
 #run fourier analysis when this file is executed
 if __name__ == "__main__":
-    file_path = "WeatherAthenryProcessed.csv" #replace with the actual file path
+    file_path = "WeatherDunsanyProcessed.csv" #replace with the actual file path
     column_name = "wdsp^3" #replace with the column name to analyze
     analyze_fourier(file_path, column_name)
