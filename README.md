@@ -54,13 +54,42 @@ However, this should be improved at a later date by using simulations with a muc
 we do, provides data on the average energy that must be added/removed over the course of a full day in the worst case scenario, but real-world data might fluctuate very quickly and intensely within smaller
 portions of a single day.
 
-Future goals as of the 27th:
-Automatically output optimised parameters, as well as their name, to a csv. Will require each function to be named (weather station)(type) instead of y1, y2, y3 etc.
+As of 29/01/2025, a separate script has been created: 
+GradientDescentOptimisation.py. This file requires as inputs every
+fourier transform equation for wind speed^3 or global radiation for every
+weather station. With these inputs, along with the demand equation, gradient descent
+is used to find optimal coefficients to multiply the solar/wind^3 equations by, to minimise
+the difference between their sum and demand.
 
-Figure out how to factor in things like cost and penalise wind installation locations with poor overall wind speeds but good patterns. Do the same w/solar; it is important that locations where installations may be more or less affordable are counted to some extent in the programme.
+These coefficients represent capacities for solar and wind energy
+installations at the corresponding weather station. We can therefore use
+a large amount of solar and wind equations, from a large amount of weather stations,
+to create a model for a grid that is as stable as possible while using renewables.
 
-Provide option to automatically update fourier transform equations inside relevant scripts when a new optimal equation is found.
+Shortly, I will implement actual capacity figure calculations at each of these locations.
 
-Create video of how it works.
+Inside the gradient descent calculation, I have added a penalty term which disproportionately
+penalises locations with low solar/wind capacity. In practicality, implementing
+solar/wind installations in low-capacity locations would be uneconomical. This
+figure can be adjusted (lambda_penalty), but its effect is not easily quantifiable as a
+percentage weight or something else, due to the nature of how gradient descent
+operates. Higher values produce harsher penalisation but cause the programme
+to require more iterations to converge to an absolute error value. The iteration 
+count can be adjusted using the iterations variable in 
+GradientDescentOptimisation.py. In the end, similar absolute error values are generally achieved
+using higher lambdas as opposed to lower lambdas,
+provided enough iterations. This penalisation-based approach leads to generally
+lower proportions of cost-inefficient installation types, but this can be
+difficult to predict due to the volatile and numerical nature of gradient
+descent. Some areas of low capacity will see increased coefficients, but in general
+there is a large decrease.
 
-Note: Weather data used up until now was from Dublin Airport from Jan. 2004 - Dec. 2023.
+An optimisation of regular gradient descent, known as adaptive movement estimation
+(ADAM) is used in this. ADAM involves adapting the step size based on factors
+such as previous step size and gradient. It is explained here:
+https://www.geeksforgeeks.org/adam-optimizer/
+
+Future goals as of 29/01/2025:
+Restrict coefficients to non-negative values as they can currently assume negative values.
+Begin performing simulations using standard deviation values, for optimal setups w/optimal coefficients.
+

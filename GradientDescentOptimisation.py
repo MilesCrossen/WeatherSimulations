@@ -86,24 +86,127 @@ def y10(days):
             31.293165 * np.cos(2 * np.pi * 0.005464 * days + 1.649791))
 #dunsany solar
 
-def y11(days): return np.zeros_like(days)
-def y12(days): return np.zeros_like(days)
-def y13(days): return np.zeros_like(days)
-def y14(days): return np.zeros_like(days)
-def y15(days): return np.zeros_like(days)
-def y16(days): return np.zeros_like(days)
-def y17(days): return np.zeros_like(days)
-def y18(days): return np.zeros_like(days)
-def y19(days): return np.zeros_like(days)
-def y20(days): return np.zeros_like(days)
+def y11(days):
+    return (343.309241 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 72.460247 * np.cos(2 * np.pi * -0.002732 * days + 0.670297)
+            + 72.460247 * np.cos(2 * np.pi * 0.002732 * days + -0.670297)
+            + 15.390016 * np.cos(2 * np.pi * 0.076503 * days + -0.760572)
+            + 15.390016 * np.cos(2 * np.pi * -0.076503 * days + 0.760572))
+#fermoy moorepark wind^3
+def y12(days):
+    return (935.938589 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 393.507642 * np.cos(2 * np.pi * -0.002732 * days + 2.918190)
+            + 393.507642 * np.cos(2 * np.pi * 0.002732 * days + -2.918190)
+            + 21.585158 * np.cos(2 * np.pi * 0.005464 * days + 1.392904)
+            + 21.585158 * np.cos(2 * np.pi * -0.005464 * days + -1.392904))
+#fermoy moorepark solar
+def y13(days):
+    return (1939.404228 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 529.598164 * np.cos(2 * np.pi * -0.002732 * days + 0.219172)
+            + 529.598164 * np.cos(2 * np.pi * 0.002732 * days + -0.219172)
+            + 181.382104 * np.cos(2 * np.pi * -0.005464 * days + 0.534682)
+            + 181.382104 * np.cos(2 * np.pi * 0.005464 * days + -0.534682))
+#finner wind^3
+def y14(days):
+    return (912.411675 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 411.518471 * np.cos(2 * np.pi * -0.002732 * days + 2.882892)
+            + 411.518471 * np.cos(2 * np.pi * 0.002732 * days + -2.882892)
+            + 35.705437 * np.cos(2 * np.pi * -0.005464 * days + -1.691425)
+            + 35.705437 * np.cos(2 * np.pi * 0.005464 * days + 1.691425))
+#finner solar
+def y15(days):
+    return (915.591132 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 209.872763 * np.cos(2 * np.pi * -0.002732 * days + 0.412902)
+            + 209.872763 * np.cos(2 * np.pi * 0.002732 * days + -0.412902)
+            + 44.180870 * np.cos(2 * np.pi * -0.084699 * days + -0.631869)
+            + 44.180870 * np.cos(2 * np.pi * 0.084699 * days + 0.631869))
+#gurteen wdsp^3
+def y16(days):
+    return (947.711405 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 400.650933 * np.cos(2 * np.pi * -0.002732 * days + 2.897611)
+            + 400.650933 * np.cos(2 * np.pi * 0.002732 * days + -2.897611)
+            + 29.628462 * np.cos(2 * np.pi * 0.005464 * days + 1.753629)
+            + 29.628462 * np.cos(2 * np.pi * -0.005464 * days + -1.753629))
+#gurteen solar
+def y17(days):
+    return (954.588478 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 194.073008 * np.cos(2 * np.pi * -0.002732 * days + 0.230487)
+            + 194.073008 * np.cos(2 * np.pi * 0.002732 * days + -0.230487)
+            + 49.324582 * np.cos(2 * np.pi * -0.021858 * days + -0.667861)
+            + 49.324582 * np.cos(2 * np.pi * 0.021858 * days + 0.667861))
+#johnstown castle wdsp^3
+
+def y18(days):
+    return (1023.393226 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 442.266362 * np.cos(2 * np.pi * -0.002732 * days + 2.937333)
+            + 442.266362 * np.cos(2 * np.pi * 0.002732 * days + -2.937333)
+            + 29.143576 * np.cos(2 * np.pi * -0.005464 * days + -0.952498)
+            + 29.143576 * np.cos(2 * np.pi * 0.005464 * days + 0.952498))
+#johnstown castle solar
+def y19(days):
+    return (5008.804050 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 1326.813695 * np.cos(2 * np.pi * -0.002732 * days + -0.080705)
+            + 1326.813695 * np.cos(2 * np.pi * 0.002732 * days + 0.080705)
+            + 246.864158 * np.cos(2 * np.pi * -0.005464 * days + 0.179295)
+            + 246.864158 * np.cos(2 * np.pi * 0.005464 * days + -0.179295))
+#mace head wdsp^3
+def y20(days):
+    return (1019.889468 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 453.321877 * np.cos(2 * np.pi * -0.002732 * days + 2.883051)
+            + 453.321877 * np.cos(2 * np.pi * 0.002732 * days + -2.883051)
+            + 38.470130 * np.cos(2 * np.pi * -0.005464 * days + -1.558188)
+            + 38.470130 * np.cos(2 * np.pi * 0.005464 * days + 1.558188))
+#mace head solar
 def y21(days): return np.zeros_like(days)
-def y22(days): return np.zeros_like(days)
-def y23(days): return np.zeros_like(days)
-def y24(days): return np.zeros_like(days)
-def y25(days): return np.zeros_like(days)
-def y26(days): return np.zeros_like(days)
-def y27(days): return np.zeros_like(days)
-def y28(days): return np.zeros_like(days)
+def y22(days):
+    return (889.008179 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 383.827537 * np.cos(2 * np.pi * -0.002732 * days + 2.896132)
+            + 383.827537 * np.cos(2 * np.pi * 0.002732 * days + -2.896132)
+            + 31.802652 * np.cos(2 * np.pi * -0.005464 * days + -1.712465)
+            + 31.802652 * np.cos(2 * np.pi * 0.005464 * days + 1.712465))
+#mount dillon solar
+def y23(days):
+    return (705.804733 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 189.272275 * np.cos(2 * np.pi * -0.002732 * days + 0.389232)
+            + 189.272275 * np.cos(2 * np.pi * 0.002732 * days + -0.389232)
+            + 26.993244 * np.cos(2 * np.pi * -0.005464 * days + 1.389271)
+            + 26.993244 * np.cos(2 * np.pi * 0.005464 * days + -1.389271))
+#mullingar wdsp^3
+def y24(days):
+    return (916.467203 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 392.937949 * np.cos(2 * np.pi * -0.002732 * days + 2.905887)
+            + 392.937949 * np.cos(2 * np.pi * 0.002732 * days + -2.905887)
+            + 31.580532 * np.cos(2 * np.pi * -0.005464 * days + -1.650745)
+            + 31.580532 * np.cos(2 * np.pi * 0.005464 * days + 1.650745))
+#mullingar solar
+def y25(days):
+    return (3732.896923 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 878.851978 * np.cos(2 * np.pi * -0.002732 * days + 0.174377)
+            + 878.851978 * np.cos(2 * np.pi * 0.002732 * days + -0.174377)
+            + 118.881919 * np.cos(2 * np.pi * -0.076503 * days + 0.358980)
+            + 118.881919 * np.cos(2 * np.pi * 0.076503 * days + -0.358980))
+#roches point wdsp^3
+def y26(days):
+    return (1048.926846 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 439.458455 * np.cos(2 * np.pi * -0.002732 * days + 2.924591)
+            + 439.458455 * np.cos(2 * np.pi * 0.002732 * days + -2.924591)
+            + 27.974512 * np.cos(2 * np.pi * -0.005464 * days + -1.192798)
+            + 27.974512 * np.cos(2 * np.pi * 0.005464 * days + 1.192798))
+#roches point solar
+def y27(days):
+    return (3210.332005 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 953.364610 * np.cos(2 * np.pi * -0.002732 * days + 0.076167)
+            + 953.364610 * np.cos(2 * np.pi * 0.002732 * days + -0.076167)
+            + 171.070788 * np.cos(2 * np.pi * -0.174863 * days + 2.982949)
+            + 171.070788 * np.cos(2 * np.pi * 0.174863 * days + -2.982949))
+#sherkin island wdsp^3
+def y28(days):
+    return (1083.530563 * np.cos(2 * np.pi * 0.000000 * days + -0.000000)
+            + 467.442574 * np.cos(2 * np.pi * -0.002732 * days + 2.937822)
+            + 467.442574 * np.cos(2 * np.pi * 0.002732 * days + -2.937822)
+            + 24.709511 * np.cos(2 * np.pi * -0.005464 * days + -0.987798)
+            + 24.709511 * np.cos(2 * np.pi * 0.005464 * days + 0.987798))
+
 def y29(days): return np.zeros_like(days)
 def y30(days): return np.zeros_like(days)
 def y31(days): return np.zeros_like(days)
@@ -159,7 +262,7 @@ D = d(days) #demand for each day
 
 #gradient descent parameters
 learning_rate = 0.01 #base learning rate (delta x)
-iterations = 500000 #more iterations = more accurate but requires more computing
+iterations = 50000 #more iterations = more accurate but requires more computing
 #coefficients = np.ones(50) #initialise coefficients (y1...y50) to 1
 coefficients = np.ones(50)
 
