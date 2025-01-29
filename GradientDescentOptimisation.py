@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib
+import csv
 
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -135,7 +136,8 @@ basis_functions = [
     y21, y22, y23, y24, y25, y26, y27, y28, y29, y30,
     y31, y32, y33, y34, y35, y36, y37, y38, y39, y40,
     y41, y42, y43, y44, y45, y46, y47, y48, y49, y50
-]
+] #instead of manually calling each function, we can loop
+#over this
 
 #define demand function
 def d(days):
@@ -151,44 +153,63 @@ days = np.linspace(0, 365, 365)
 
 #find calues of basis functions + demand function
 Y = np.array([func(days) for func in basis_functions])
-#for each basis function, computes fund(days) where days contains every dya of the year
+#for each basis function, computes func(days) where days contains every dya of the year
 #50x365 matrix
 D = d(days) #demand for each day
 
 #gradient descent parameters
 learning_rate = 0.01 #base learning rate (delta x)
 iterations = 50000 #more iterations = more accurate but requires more computing
-coefficients = np.ones(50) #initialise coefficients (y1...y50) to 1
+#coefficients = np.ones(50) #initialise coefficients (y1...y50) to 1
+coefficients = np.ones(50)
 
 #we use Adaptive Movement Estimation (ADAM) to improve gradient descent
 #https://blog.marketmuse.com/glossary/adaptive-moment-estimation-adam-definition/
-# Adam optimizer parameters
 m = np.zeros_like(coefficients) #Momentum term
 v = np.zeros_like(coefficients) #RMSprop term
-beta1 = 0.9 #omentum decay
+beta1 = 0.9 #momentum decay
+#high momentum means the gradient is very smooth and depends quite heavily on past values
+#we won't get sudden changes
 beta2 = 0.999 #RMSprop decay
-epsilon = 1e-8 #prevent division by 0
+#RMSprop lowers learning rates if previous gradients are high, inreases them if they're low
+#helps prevent over/undershoot
+epsilon = 1e-8 #prevent division by 0 in RMSprop calculation
+
+average_values = np.array([np.mean(func(days)) for func in basis_functions])
+#averages values for each function are used later on
 
 #gradient descent loop w/adam
 for i in range(iterations):
     #predicted demand using current coefficients
     predicted = np.dot(coefficients, Y)
-    #dot = dot product. Coefficients is 50x1 and Y  is 365x50
+    #dot = dot product. Coefficients is 50x1 and Y  is 365x50 basis funcction outputs
     #so this creates a 365x1 output of predicted demand values
 
-    #calculate error
+    #calculate error between predicted and real demand
     error = predicted - D
 
     #compute gradient
     gradient = np.dot(np.sign(error), Y.T) / len(days)
+    #np.sign(error) yields 1 if predicted>D, -1 if predicted<D, and 0 if predicted=D
+    #Y.T is transport of Y just to make it work for multiplication.
+    #this measures how much each basis veector contributes to overall prediction error
+
+    lambda_penalty = 0 #if this parameter is higher, it penalises areas w/lower average
+    #production more, causing the programme to recommend installations in areas with more
+    #power production capacity
+    gradient += lambda_penalty * coefficients / (average_values + 1e-6) #penalisation term
+    #adds a penalty if average_values is low. Reduces coefficinets for low-energy areas
+
 
     #ADAM updating.
     m = beta1 * m + (1 - beta1) * gradient #momentum update using general formula
     v = beta2 * v + (1 - beta2) * (gradient ** 2) #RMSprop update using general formula
-    m_hat = m / (1 - beta1 ** (i + 1)) #bias correction for momentum
-    v_hat = v / (1 - beta2 ** (i + 1)) #bias correction for RMSprop
+    m_hat = m / (1 - beta1 ** (i + 1)) #bias correction for momentum, prevents m from being
+    #too small for early iterations
+    v_hat = v / (1 - beta2 ** (i + 1)) #bias correction for RMSprop, prevents v from being
+    #too small for early iterations
 
-    #updating coefficients
+    #updating coefficients (final step of ADAM)
     coefficients -= learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
 
     #every 1k iterations, log and print progress
@@ -210,3 +231,18 @@ plt.ylabel("Value")
 plt.title("Final Production vs Demand")
 plt.grid()
 plt.show()
+
+#csv coefficient output file name
+csv_filename = "coefficients.csv"
+
+#find avg values before multiplication
+#average_values = [np.mean(func(days)) for func in basis_functions]
+
+#add to csv
+with open(csv_filename, mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Basis Function", "Coefficient", "Average Value of Wind/Solar"]) #header contents
+    for i, (coef, avg) in enumerate(zip(coefficients, average_values), start=1):
+        writer.writerow([f"y{i}", coef, avg]) #write function name, coefficient, and average
+
+print(f"Coefficients and average values saved to {csv_filename}")

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def run_wind_simulation():
     print("Running wind simulation...")
 
-    days = np.arange(1, 366)  # Generate days 1-366
+    days = np.arange(1, 366)
 
     #average wind speed squared equation
     wind_capacity_daily = (
