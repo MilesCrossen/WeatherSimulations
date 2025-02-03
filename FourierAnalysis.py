@@ -82,6 +82,23 @@ def get_fourier_equation(fourier_coefficients, num_days, significant_indices):
     return f"f(t) = {equation}"
 
 
+#convert fourier transform into requested cosine sum format
+def get_cosine_form(fourier_coefficients, num_days, significant_indices):
+    frequencies = np.fft.fftfreq(num_days) #frequency vals
+    cosine_terms = []
+
+    #loop through the significant indices
+    for k in significant_indices:
+        amplitude = np.abs(fourier_coefficients[k]) / num_days
+        phase = np.angle(fourier_coefficients[k])
+        frequency = frequencies[k]
+        term = f"{amplitude:.6f} * np.cos(2 * np.pi * {frequency:.6f} * days + {phase:.6f})"
+        cosine_terms.append(term)
+
+    #combine terms into the requested format
+    return " + ".join(cosine_terms)
+
+
 #plot results
 def plot_results(original_signal, reconstructed_signal, fourier_coefficients, significant_indices, day_labels,
                  column_name):
@@ -118,20 +135,26 @@ def plot_results(original_signal, reconstructed_signal, fourier_coefficients, si
 
 
 #function to write Fourier results to CSV
-def write_fourier_to_csv(csv_filename, file_path, column_name, avg_equation, std_equation, row_num):
-    #read existing data if file exists
+def write_fourier_to_csv(csv_filename, file_path, column_name, avg_equation, std_equation, avg_cosine_form, std_cosine_form, row_num):
+    # read existing data if file exists
     try:
         df = pd.read_csv(csv_filename)
     except FileNotFoundError:
         #if file doesn't exist, create dataframe w/column headers
-        df = pd.DataFrame(columns=["File", "Column", "Fourier_Avg", "Fourier_Std"])
+        df = pd.DataFrame(columns=["File", "Column", "Fourier_Avg", "Fourier_Std", "Fourier_Avg_Cosine_Form", "Fourier_Std_Cosine_Form"])
+
+    #ensure the dataframe has all required columns (handle missing ones)
+    expected_columns = ["File", "Column", "Fourier_Avg", "Fourier_Std", "Fourier_Avg_Cosine_Form", "Fourier_Std_Cosine_Form"]
+    for col in expected_columns:
+        if col not in df.columns:
+            df[col] = ""  # add missing columns
 
     #ensure the dataframe has enough rows
     while len(df) <= row_num:
-        df.loc[len(df)] = [""] * len(df.columns) #add empty rows if needed
+        df.loc[len(df)] = [""] * len(df.columns)  # add empty rows if needed
 
     #insert new data at specified row
-    df.loc[row_num] = [file_path, column_name, avg_equation, std_equation]
+    df.loc[row_num] = [file_path, column_name, avg_equation, std_equation, avg_cosine_form, std_cosine_form]
 
     #save back to CSV
     df.to_csv(csv_filename, index=False)
@@ -167,22 +190,19 @@ def analyze_fourier(file_path, column_name, csv_filename="FourierResults.csv", r
     avg_equation = get_fourier_equation(avg_fourier_coefficients, num_days, avg_significant_indices)
     std_equation = get_fourier_equation(std_fourier_coefficients, num_days, std_significant_indices)
 
+    #get cosine sum forms
+    avg_cosine_form = get_cosine_form(avg_fourier_coefficients, num_days, avg_significant_indices)
+    std_cosine_form = get_cosine_form(std_fourier_coefficients, num_days, std_significant_indices)
+
     #save fourier series to CSV
-    write_fourier_to_csv(csv_filename, file_path, column_name, avg_equation, std_equation, row_num)
+    write_fourier_to_csv(csv_filename, file_path, column_name, avg_equation, std_equation, avg_cosine_form, std_cosine_form, row_num)
 
-    #plot average signal and its fourier components
-    plot_results(averaged_values, avg_reconstructed_signal, avg_fourier_coefficients, avg_significant_indices,
-                 day_labels, column_name)
-
-    #plot standard deviation signal and its fourier components
-    plot_results(std_values, std_reconstructed_signal, std_fourier_coefficients, std_significant_indices, day_labels,
-                 f"Std Dev of {column_name}")
 
 #run fourier analysis when this file is executed
 if __name__ == "__main__":
-    file_path = "WeatherAthenryProcessed.csv" #replace with the actual file path
-    column_name = "wdsp^3" #replace with the column name to analyze
+    file_path = "WeatherDunsanyProcessed.csv" #replace with the actual file path
+    column_name = "glorad" #replace with the column name to analyze
     csv_filename = "FourierResults.csv" #file to store results
-    row_num = 0 #update manually per weather station
+    row_num = 13 #update manually per weather station
 
     analyze_fourier(file_path, column_name, csv_filename, row_num)
