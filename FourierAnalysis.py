@@ -25,7 +25,7 @@ def load_and_preprocess_data(file_path, column_name):
     data = data[data[column_name] != 0]
 
     #extract day of year (ignoring leap years to simplify)
-    data['Day_of_Year'] = data['Date'].dt.strftime('%m-%d') #extract MM-DD for grouping
+    data['Day_of_Year'] = data['Date'].dt.strftime('%m-%d')  # extract MM-DD for grouping
 
     #average values for each day of the year across all years
     daily_avg = data.groupby('Day_of_Year')[column_name].mean()
@@ -65,7 +65,7 @@ def reconstruct_signal_with_top_components(fourier_coefficients, num_days, top_n
 
 
 #print fourier transform eqn for top n components
-def print_fourier_equation(fourier_coefficients, num_days, significant_indices):
+def get_fourier_equation(fourier_coefficients, num_days, significant_indices):
     frequencies = np.fft.fftfreq(num_days) #frequency vals
     equation_terms = []
 
@@ -79,19 +79,20 @@ def print_fourier_equation(fourier_coefficients, num_days, significant_indices):
 
     #combine terms into an equation
     equation = " + ".join(equation_terms)
-    print("\nDerived Fourier Transform Equation (Top Components):")
-    print(f"f(t) = {equation}\n")
+    return f"f(t) = {equation}"
 
 
 #plot results
-def plot_results(original_signal, reconstructed_signal, fourier_coefficients, significant_indices, day_labels, column_name):
+def plot_results(original_signal, reconstructed_signal, fourier_coefficients, significant_indices, day_labels,
+                 column_name):
     num_days = len(original_signal)
     frequencies = np.fft.fftfreq(num_days) #frequency values
 
     #plot original vs reconstructed signal
     plt.figure(figsize=(12, 6))
     plt.plot(range(1, num_days + 1), original_signal, label=f"Original Signal ({column_name})", marker="o")
-    plt.plot(range(1, num_days + 1), reconstructed_signal, label="Reconstructed Signal (Top Components)", linestyle="--")
+    plt.plot(range(1, num_days + 1), reconstructed_signal, label="Reconstructed Signal (Top Components)",
+             linestyle="--")
     plt.xlabel("Day of the Year")
     plt.ylabel(column_name)
     plt.title(f"Original vs Reconstructed Signal ({column_name})")
@@ -116,8 +117,30 @@ def plot_results(original_signal, reconstructed_signal, fourier_coefficients, si
     plt.show()
 
 
+#function to write Fourier results to CSV
+def write_fourier_to_csv(csv_filename, file_path, column_name, avg_equation, std_equation, row_num):
+    #read existing data if file exists
+    try:
+        df = pd.read_csv(csv_filename)
+    except FileNotFoundError:
+        #if file doesn't exist, create dataframe w/column headers
+        df = pd.DataFrame(columns=["File", "Column", "Fourier_Avg", "Fourier_Std"])
+
+    #ensure the dataframe has enough rows
+    while len(df) <= row_num:
+        df.loc[len(df)] = [""] * len(df.columns) #add empty rows if needed
+
+    #insert new data at specified row
+    df.loc[row_num] = [file_path, column_name, avg_equation, std_equation]
+
+    #save back to CSV
+    df.to_csv(csv_filename, index=False)
+
+    print(f"Fourier series saved to {csv_filename} (Row {row_num})")
+
+
 #main fourier analysis function
-def analyze_fourier(file_path, column_name):
+def analyze_fourier(file_path, column_name, csv_filename="FourierResults.csv", row_num=0):
     #analyse specified column of dataset and compute fourier transform for avg + stdev
     #load and preprocess data
     averaged_values, std_values, day_labels = load_and_preprocess_data(file_path, column_name)
@@ -140,27 +163,26 @@ def analyze_fourier(file_path, column_name):
         std_fourier_coefficients, num_days, top_n
     )
 
-    #print fourier transform equation for the average signal
-    print("\nFourier Transform for Averages:")
-    print_fourier_equation(avg_fourier_coefficients, num_days, avg_significant_indices)
+    #get fourier transform equations
+    avg_equation = get_fourier_equation(avg_fourier_coefficients, num_days, avg_significant_indices)
+    std_equation = get_fourier_equation(std_fourier_coefficients, num_days, std_significant_indices)
 
-    #print fourier transform equation for the standard deviation signal
-    print("\nFourier Transform for Standard Deviations:")
-    print_fourier_equation(std_fourier_coefficients, num_days, std_significant_indices)
+    #save fourier series to CSV
+    write_fourier_to_csv(csv_filename, file_path, column_name, avg_equation, std_equation, row_num)
 
     #plot average signal and its fourier components
-    plot_results(
-        averaged_values, avg_reconstructed_signal, avg_fourier_coefficients, avg_significant_indices, day_labels, column_name
-    )
+    plot_results(averaged_values, avg_reconstructed_signal, avg_fourier_coefficients, avg_significant_indices,
+                 day_labels, column_name)
 
     #plot standard deviation signal and its fourier components
-    plot_results(
-        std_values, std_reconstructed_signal, std_fourier_coefficients, std_significant_indices, day_labels, f"Std Dev of {column_name}"
-    )
-
+    plot_results(std_values, std_reconstructed_signal, std_fourier_coefficients, std_significant_indices, day_labels,
+                 f"Std Dev of {column_name}")
 
 #run fourier analysis when this file is executed
 if __name__ == "__main__":
-    file_path = "WeatherRochesPointProcessed.csv" #replace with the actual file path
+    file_path = "WeatherAthenryProcessed.csv" #replace with the actual file path
     column_name = "wdsp^3" #replace with the column name to analyze
-    analyze_fourier(file_path, column_name)
+    csv_filename = "FourierResults.csv" #file to store results
+    row_num = 0 #update manually per weather station
+
+    analyze_fourier(file_path, column_name, csv_filename, row_num)

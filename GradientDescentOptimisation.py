@@ -317,6 +317,7 @@ for i in range(iterations):
 
     #every 1k iterations, log and print progress
     if i % 1000 == 0:
+        #coefficients = np.maximum(coefficients, 0)
         absolute_error = np.sum(np.abs(error))
         print(f"Iteration {i}, Absolute Error: {absolute_error:.5f}")
 
