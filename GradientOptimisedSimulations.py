@@ -40,7 +40,7 @@ stddev_functions = [parse_fourier_equation(eq) for eq in stddev_fourier_equation
 #linear spacing between days
 days = np.linspace(0, 365, 365)
 
-production_factor = 1.00 #production scale
+production_factor = 1.3 #production scale
 
 #compute fourier avg output
 Y_avg = production_factor * np.sum([coef * func(days) for coef, func in zip(coefficients, basis_functions)], axis=0)

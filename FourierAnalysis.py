@@ -197,12 +197,15 @@ def analyze_fourier(file_path, column_name, csv_filename="FourierResults.csv", r
     #save fourier series to CSV
     write_fourier_to_csv(csv_filename, file_path, column_name, avg_equation, std_equation, avg_cosine_form, std_cosine_form, row_num)
 
+    plot_results(averaged_values, avg_reconstructed_signal, avg_fourier_coefficients, avg_significant_indices, day_labels, column_name + " (Avg)")
+    plot_results(std_values, std_reconstructed_signal, std_fourier_coefficients, std_significant_indices, day_labels, column_name + " (Std Dev)")
+
 
 #run fourier analysis when this file is executed
 if __name__ == "__main__":
-    file_path = "WeatherDunsanyProcessed.csv" #replace with the actual file path
+    file_path = "WeatherFinnerProcessed.csv" #replace with the actual file path
     column_name = "glorad" #replace with the column name to analyze
     csv_filename = "FourierResults.csv" #file to store results
-    row_num = 13 #update manually per weather station
+    row_num = 13 #row of csv_filename file to insert results
 
     analyze_fourier(file_path, column_name, csv_filename, row_num)

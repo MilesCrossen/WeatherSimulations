@@ -263,10 +263,10 @@ for i in range(iterations):
     #compute gradient
     gradient = np.dot(np.sign(error), Y.T) / len(days)
     #np.sign(error) yields 1 if predicted>D, -1 if predicted<D, and 0 if predicted=D
-    #Y.T is transport of Y just to make it work for multiplication.
+    #Y.T is transpose of Y just to make it work for multiplication.
     #this measures how much each basis veector contributes to overall prediction error
 
-    lambda_penalty = 0.5 #if this parameter is higher, it penalises areas w/lower average
+    lambda_penalty = 2 #if this parameter is higher, it penalises areas w/lower average
     #production more, causing the programme to recommend installations in areas with more
     #power production capacity
     gradient += lambda_penalty * coefficients / (average_values + 1e-6) #penalisation term
@@ -283,6 +283,8 @@ for i in range(iterations):
 
     #updating coefficients (final step of ADAM)
     coefficients -= learning_rate * m_hat / (np.sqrt(v_hat) + epsilon)
+
+    coefficients = np.maximum(coefficients, 0)
 
     #every 1k iterations, log and print progress
     if i % 1000 == 0:
