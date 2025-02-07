@@ -269,11 +269,14 @@ for i in range(iterations):
     lambda_penalty = 2 #if this parameter is higher, it penalises areas w/lower average
     #production more, causing the programme to recommend installations in areas with more
     #power production capacity
-    gradient += lambda_penalty * coefficients / (average_values + 1e-6) #penalisation term
+    #gradient += lambda_penalty * coefficients / (average_values + 1e-6) #penalisation term
+    entropy_penalty = 2 * (np.log(coefficients + 1e-6) + 1) #encourages spread
+    gradient += lambda_penalty * coefficients / (average_values + 1e-6) + entropy_penalty
     #adds a penalty if average_values is low. Reduces coefficinets for low-energy areas
 
 
     #ADAM updating.
+
     m = beta1 * m + (1 - beta1) * gradient #momentum update using general formula
     v = beta2 * v + (1 - beta2) * (gradient ** 2) #RMSprop update using general formula
     m_hat = m / (1 - beta1 ** (i + 1)) #bias correction for momentum, prevents m from being
