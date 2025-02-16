@@ -75,11 +75,23 @@ for i in range(num_simulations):
     #compute cumulative surplus/deficit
     cumulative_balance = np.cumsum(simulated_output - daily_demand)
 
+    # compute **daily changes** in cumulative balance
+    daily_changes = np.diff(cumulative_balance, prepend=cumulative_balance[0])
+
+    # find max surplus change (max energy injection needed)
+    max_surplus_change = np.max(daily_changes)
+
+    # find max deficit change (max energy withdrawal needed)
+    max_deficit_change = np.min(daily_changes)
+
     #print max surplus and deficit
     max_surplus = np.max(cumulative_balance)
     max_deficit = np.min(cumulative_balance)
     print(
         f"For Simulation {i + 1}: Maximum surplus is {max_surplus:.2f} MWh, maximum deficit is {max_deficit:.2f} MWh.")
+    print(
+        f"               Max daily surplus change: {max_surplus_change:.2f} MWh, Max daily deficit change: {max_deficit_change:.2f} MWh."
+    )
 
     #plot cumulative energy balance
     plt.plot(days, cumulative_balance, label=f"Simulation {i + 1}")

@@ -44,9 +44,9 @@ def compute_installation_capacity(row):
     if pd.isna(avg_production): #avoid errors if val is nan
         return 0
 
-    if "wdsp^3" in row["Type"]: #wind power
+    if row["Type"].strip() == "wdsp^3": #wind power (fix: strict match check)
         efficiency = wind_efficiency
-    elif "glorad" in row["Type"]: #solar power
+    elif row["Type"].strip() == "glorad": #solar power
         efficiency = solar_efficiency
     else:
         return 0 #unknown/undefined type
@@ -56,6 +56,14 @@ def compute_installation_capacity(row):
 
 #compute installation capacity, add to dataframe
 merged_df["Installation Capacity (MW)"] = merged_df.apply(compute_installation_capacity, axis=1)
+
+#compute total wind and solar installation capacity
+total_wind_capacity = merged_df.loc[merged_df["Type"].str.strip() == "wdsp^3", "Installation Capacity (MW)"].sum()
+total_solar_capacity = merged_df.loc[merged_df["Type"].str.strip() == "glorad", "Installation Capacity (MW)"].sum()
+
+#print total wind and solar capacities
+print(f"Total Wind Installation Capacity Required: {total_wind_capacity:.2f} MW")
+print(f"Total Solar Installation Capacity Required: {total_solar_capacity:.2f} MW")
 
 #select important columns
 final_df = merged_df[["Weather Station", "Type", "Coefficient", "Average Value", "Installation Capacity (MW)"]]
