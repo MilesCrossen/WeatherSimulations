@@ -275,7 +275,7 @@ for i in range(iterations):
     #adds a penalty if average_values is low. Reduces coefficinets for low-energy areas
 
 
-    #ADAM updating.
+    #ADAM updating below.
 
     m = beta1 * m + (1 - beta1) * gradient #momentum update using general formula
     v = beta2 * v + (1 - beta2) * (gradient ** 2) #RMSprop update using general formula

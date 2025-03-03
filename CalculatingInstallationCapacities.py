@@ -1,7 +1,9 @@
 import pandas as pd
 
 solar_efficiency = 0.2 #user defined... usually .15-.22 in real situations
-wind_efficiency = 0.4 #user defined... up to 59.3% (notes in our old thermofluids notes)
+wind_efficiency = 0.4 #user defined... up to 59.3% (info on this in our old thermofluids notes)
+air_density = 1.225 #reference val for air density, but depends on things like pressure, temp etc
+swept_area = 8000 #assumption for swept area of a normal turbine
 
 #used csv files
 fourier_df = pd.read_csv("FourierResults.csv")
