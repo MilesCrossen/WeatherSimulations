@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_35907a8a963c5764a689bf3465e34d3b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_35907a8a963c5764a689bf3465e34d3b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_35907a8a963c5764a689bf3465e34d3b = L.map(
+                "map_35907a8a963c5764a689bf3465e34d3b",
+                {
+                    center: [53.5, -8.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_97c011e793b929aa4815630cf8920151 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_97c011e793b929aa4815630cf8920151.addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var marker_02c5cf0b21b0ed6eb9ed288203cf103d = L.marker(
+                [53.283333, -8.75],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_670e05dec0380a85a1749308c8f71f3f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_02c5cf0b21b0ed6eb9ed288203cf103d.setIcon(icon_670e05dec0380a85a1749308c8f71f3f);
+        
+    
+        var popup_8214038954cb34030b61ce264f30b021 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b55e6750b41dc2bbccb7f004087ad3f9 = $(`<div id="html_b55e6750b41dc2bbccb7f004087ad3f9" style="width: 100.0%; height: 100.0%;"><b>Athenry</b><br>Type: Solar<br>Capacity: 71.16 MW</div>`)[0];
+                popup_8214038954cb34030b61ce264f30b021.setContent(html_b55e6750b41dc2bbccb7f004087ad3f9);
+            
+        
+
+        marker_02c5cf0b21b0ed6eb9ed288203cf103d.bindPopup(popup_8214038954cb34030b61ce264f30b021)
+        ;
+
+        
+    
+    
+            var marker_01a03ccdb0c660121850406f1e7981c9 = L.marker(
+                [54.05, -7.266667],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_d5144b9f13f5297ed6380ce63b908859 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_01a03ccdb0c660121850406f1e7981c9.setIcon(icon_d5144b9f13f5297ed6380ce63b908859);
+        
+    
+        var popup_403898cb43c3fc0f8be08962b836ac8c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cb5ac3bf88870314ee917f48c31d9dae = $(`<div id="html_cb5ac3bf88870314ee917f48c31d9dae" style="width: 100.0%; height: 100.0%;"><b>Ballyhaise</b><br>Type: Solar<br>Capacity: 1199.47 MW</div>`)[0];
+                popup_403898cb43c3fc0f8be08962b836ac8c.setContent(html_cb5ac3bf88870314ee917f48c31d9dae);
+            
+        
+
+        marker_01a03ccdb0c660121850406f1e7981c9.bindPopup(popup_403898cb43c3fc0f8be08962b836ac8c)
+        ;
+
+        
+    
+    
+            var marker_910d11f6185f35fb5f234253b3dcf2e2 = L.marker(
+                [52.85, -6.933333],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_8cfc05ab1e82364d86774b73708a8222 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_910d11f6185f35fb5f234253b3dcf2e2.setIcon(icon_8cfc05ab1e82364d86774b73708a8222);
+        
+    
+        var popup_a141b3f2b81cb2ab8ce14dd169d6cc8a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_27c73d7240631d6ec46d6ef38939ee48 = $(`<div id="html_27c73d7240631d6ec46d6ef38939ee48" style="width: 100.0%; height: 100.0%;"><b>Carlow Oakpark</b><br>Type: Wind<br>Capacity: 1723.27 MW</div>`)[0];
+                popup_a141b3f2b81cb2ab8ce14dd169d6cc8a.setContent(html_27c73d7240631d6ec46d6ef38939ee48);
+            
+        
+
+        marker_910d11f6185f35fb5f234253b3dcf2e2.bindPopup(popup_a141b3f2b81cb2ab8ce14dd169d6cc8a)
+        ;
+
+        
+    
+    
+            var marker_77c72ce3bfe912170782dd6eb164575f = L.marker(
+                [52.85, -6.933333],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_f12bbb0a00be6d396ef178007ec20cce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_77c72ce3bfe912170782dd6eb164575f.setIcon(icon_f12bbb0a00be6d396ef178007ec20cce);
+        
+    
+        var popup_2c66b1faaa94004fc9ff84245325bbad = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e7e8d20c2bcd30cbbde4580ceeaf5f2d = $(`<div id="html_e7e8d20c2bcd30cbbde4580ceeaf5f2d" style="width: 100.0%; height: 100.0%;"><b>Carlow Oakpark</b><br>Type: Solar<br>Capacity: 404.35 MW</div>`)[0];
+                popup_2c66b1faaa94004fc9ff84245325bbad.setContent(html_e7e8d20c2bcd30cbbde4580ceeaf5f2d);
+            
+        
+
+        marker_77c72ce3bfe912170782dd6eb164575f.bindPopup(popup_2c66b1faaa94004fc9ff84245325bbad)
+        ;
+
+        
+    
+    
+            var marker_8d79c78ff6260150cf5119df20a043b4 = L.marker(
+                [53.716667, -8.983333],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_7f6e971575c0223c8c77aa252ebf8971 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_8d79c78ff6260150cf5119df20a043b4.setIcon(icon_7f6e971575c0223c8c77aa252ebf8971);
+        
+    
+        var popup_7896375571206e38ab97928333f04986 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2915fb1e4461b50af7d1f3e3d344d763 = $(`<div id="html_2915fb1e4461b50af7d1f3e3d344d763" style="width: 100.0%; height: 100.0%;"><b>Claremorris</b><br>Type: Solar<br>Capacity: 163.81 MW</div>`)[0];
+                popup_7896375571206e38ab97928333f04986.setContent(html_2915fb1e4461b50af7d1f3e3d344d763);
+            
+        
+
+        marker_8d79c78ff6260150cf5119df20a043b4.bindPopup(popup_7896375571206e38ab97928333f04986)
+        ;
+
+        
+    
+    
+            var marker_6bfd7517f0aaeecf6e00130bd81c6b0d = L.marker(
+                [52.133333, -8.283333],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_9691597db6d793d51d8dd67fd5372957 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6bfd7517f0aaeecf6e00130bd81c6b0d.setIcon(icon_9691597db6d793d51d8dd67fd5372957);
+        
+    
+        var popup_c55773e54f267b3c577409f10de76d35 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ad5bedfac62efda7d2d8511a72dd0c65 = $(`<div id="html_ad5bedfac62efda7d2d8511a72dd0c65" style="width: 100.0%; height: 100.0%;"><b>Fermoy Moorepark</b><br>Type: Solar<br>Capacity: 1108.69 MW</div>`)[0];
+                popup_c55773e54f267b3c577409f10de76d35.setContent(html_ad5bedfac62efda7d2d8511a72dd0c65);
+            
+        
+
+        marker_6bfd7517f0aaeecf6e00130bd81c6b0d.bindPopup(popup_c55773e54f267b3c577409f10de76d35)
+        ;
+
+        
+    
+    
+            var marker_389589662b6c613969665ae7d95938f7 = L.marker(
+                [54.483333, -8.233333],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_6f7e7fb92a58fe73ca40766cf977531c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_389589662b6c613969665ae7d95938f7.setIcon(icon_6f7e7fb92a58fe73ca40766cf977531c);
+        
+    
+        var popup_746e2717323ddf33922a0a903446038e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_93fbdeac8b69668ce2710df9aefd7439 = $(`<div id="html_93fbdeac8b69668ce2710df9aefd7439" style="width: 100.0%; height: 100.0%;"><b>Finner</b><br>Type: Solar<br>Capacity: 581.01 MW</div>`)[0];
+                popup_746e2717323ddf33922a0a903446038e.setContent(html_93fbdeac8b69668ce2710df9aefd7439);
+            
+        
+
+        marker_389589662b6c613969665ae7d95938f7.bindPopup(popup_746e2717323ddf33922a0a903446038e)
+        ;
+
+        
+    
+    
+            var marker_9319770a2009c2e1bc44715cab9de3e1 = L.marker(
+                [53.016667, -8.1],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_d27c9ff8f062e3fcb2fc72215ed5a586 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9319770a2009c2e1bc44715cab9de3e1.setIcon(icon_d27c9ff8f062e3fcb2fc72215ed5a586);
+        
+    
+        var popup_abfca33b634c272ee5ffbf4757dec07e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_929506306e73e3a11038dfec6e0a468b = $(`<div id="html_929506306e73e3a11038dfec6e0a468b" style="width: 100.0%; height: 100.0%;"><b>Gurteen</b><br>Type: Solar<br>Capacity: 946.15 MW</div>`)[0];
+                popup_abfca33b634c272ee5ffbf4757dec07e.setContent(html_929506306e73e3a11038dfec6e0a468b);
+            
+        
+
+        marker_9319770a2009c2e1bc44715cab9de3e1.bindPopup(popup_abfca33b634c272ee5ffbf4757dec07e)
+        ;
+
+        
+    
+    
+            var marker_66b47f3cfb091fb2e7b9837de92b5605 = L.marker(
+                [52.3, -6.5],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_ce53d703de99a6103e5b628977244f5f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_66b47f3cfb091fb2e7b9837de92b5605.setIcon(icon_ce53d703de99a6103e5b628977244f5f);
+        
+    
+        var popup_c3f3330b00ec734e2d500e55bef4b9b8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_14c49cb55352f75fb05d68bd172f44aa = $(`<div id="html_14c49cb55352f75fb05d68bd172f44aa" style="width: 100.0%; height: 100.0%;"><b>Johnstown Castle</b><br>Type: Wind<br>Capacity: 94.12 MW</div>`)[0];
+                popup_c3f3330b00ec734e2d500e55bef4b9b8.setContent(html_14c49cb55352f75fb05d68bd172f44aa);
+            
+        
+
+        marker_66b47f3cfb091fb2e7b9837de92b5605.bindPopup(popup_c3f3330b00ec734e2d500e55bef4b9b8)
+        ;
+
+        
+    
+    
+            var marker_739c456f09163e3a8eb6dbf9ef487faa = L.marker(
+                [52.3, -6.5],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_01399a657e2e1e75c5857223de57f5b5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_739c456f09163e3a8eb6dbf9ef487faa.setIcon(icon_01399a657e2e1e75c5857223de57f5b5);
+        
+    
+        var popup_22589df20f14d9f633a4de4aaaf84bad = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_22cdf15fc73986904ae305d620a19387 = $(`<div id="html_22cdf15fc73986904ae305d620a19387" style="width: 100.0%; height: 100.0%;"><b>Johnstown Castle</b><br>Type: Solar<br>Capacity: 140.79 MW</div>`)[0];
+                popup_22589df20f14d9f633a4de4aaaf84bad.setContent(html_22cdf15fc73986904ae305d620a19387);
+            
+        
+
+        marker_739c456f09163e3a8eb6dbf9ef487faa.bindPopup(popup_22589df20f14d9f633a4de4aaaf84bad)
+        ;
+
+        
+    
+    
+            var marker_46907f81b89baebb8f3b5d746c5e2320 = L.marker(
+                [53.333333, -9.9],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_5e3f8e7b2ffb798d508cb1c2eed4d273 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_46907f81b89baebb8f3b5d746c5e2320.setIcon(icon_5e3f8e7b2ffb798d508cb1c2eed4d273);
+        
+    
+        var popup_301494a3d348c0ca1de1ccf05b9d1ed5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9fa24279320459a589f392998b082966 = $(`<div id="html_9fa24279320459a589f392998b082966" style="width: 100.0%; height: 100.0%;"><b>Mace Head</b><br>Type: Wind<br>Capacity: 5139.33 MW</div>`)[0];
+                popup_301494a3d348c0ca1de1ccf05b9d1ed5.setContent(html_9fa24279320459a589f392998b082966);
+            
+        
+
+        marker_46907f81b89baebb8f3b5d746c5e2320.bindPopup(popup_301494a3d348c0ca1de1ccf05b9d1ed5)
+        ;
+
+        
+    
+    
+            var marker_9cff7f3fb2d15463dbb33dde8264e4a6 = L.marker(
+                [53.333333, -9.9],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_08b4da8ea2fee7ffba8eb22f6e7c8efa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9cff7f3fb2d15463dbb33dde8264e4a6.setIcon(icon_08b4da8ea2fee7ffba8eb22f6e7c8efa);
+        
+    
+        var popup_7950ea01514f19e328851ba0a1f625d0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3f96231a7268349e49d6bb9ff79b84c2 = $(`<div id="html_3f96231a7268349e49d6bb9ff79b84c2" style="width: 100.0%; height: 100.0%;"><b>Mace Head</b><br>Type: Solar<br>Capacity: 2.28 MW</div>`)[0];
+                popup_7950ea01514f19e328851ba0a1f625d0.setContent(html_3f96231a7268349e49d6bb9ff79b84c2);
+            
+        
+
+        marker_9cff7f3fb2d15463dbb33dde8264e4a6.bindPopup(popup_7950ea01514f19e328851ba0a1f625d0)
+        ;
+
+        
+    
+    
+            var marker_b637e331bed193fbc543e8db6357f1f6 = L.marker(
+                [53.766667, -8.116667],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_3a4f162308d6659570d73745a9147769 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_b637e331bed193fbc543e8db6357f1f6.setIcon(icon_3a4f162308d6659570d73745a9147769);
+        
+    
+        var popup_38abe1e74a985c0728dd77b523c28fba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9b2bb04f427811b663ee9409556071a5 = $(`<div id="html_9b2bb04f427811b663ee9409556071a5" style="width: 100.0%; height: 100.0%;"><b>Mount Dillon</b><br>Type: Wind<br>Capacity: 202.38 MW</div>`)[0];
+                popup_38abe1e74a985c0728dd77b523c28fba.setContent(html_9b2bb04f427811b663ee9409556071a5);
+            
+        
+
+        marker_b637e331bed193fbc543e8db6357f1f6.bindPopup(popup_38abe1e74a985c0728dd77b523c28fba)
+        ;
+
+        
+    
+    
+            var marker_d5c1db445a7af91363dfef2889bcc71e = L.marker(
+                [53.766667, -8.116667],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_1aaf1f0a26d023e2aa89931a8cfc6272 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_d5c1db445a7af91363dfef2889bcc71e.setIcon(icon_1aaf1f0a26d023e2aa89931a8cfc6272);
+        
+    
+        var popup_98c0ad58265ae903ca948357fcc6ff69 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_854ffc9630cfac29f4168424e516ecae = $(`<div id="html_854ffc9630cfac29f4168424e516ecae" style="width: 100.0%; height: 100.0%;"><b>Mount Dillon</b><br>Type: Solar<br>Capacity: 324.7 MW</div>`)[0];
+                popup_98c0ad58265ae903ca948357fcc6ff69.setContent(html_854ffc9630cfac29f4168424e516ecae);
+            
+        
+
+        marker_d5c1db445a7af91363dfef2889bcc71e.bindPopup(popup_98c0ad58265ae903ca948357fcc6ff69)
+        ;
+
+        
+    
+    
+            var marker_9d290db2498b574007820e2e9645e160 = L.marker(
+                [53.533333, -7.333333],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_941c4745f3a3c4a8c0ab6d9c1e243df8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_9d290db2498b574007820e2e9645e160.setIcon(icon_941c4745f3a3c4a8c0ab6d9c1e243df8);
+        
+    
+        var popup_d097ab523da612461c130fd4d146fcf0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_40ddc487fd3c19e5ccf187d5cf83d229 = $(`<div id="html_40ddc487fd3c19e5ccf187d5cf83d229" style="width: 100.0%; height: 100.0%;"><b>Mullingar</b><br>Type: Solar<br>Capacity: 598.81 MW</div>`)[0];
+                popup_d097ab523da612461c130fd4d146fcf0.setContent(html_40ddc487fd3c19e5ccf187d5cf83d229);
+            
+        
+
+        marker_9d290db2498b574007820e2e9645e160.bindPopup(popup_d097ab523da612461c130fd4d146fcf0)
+        ;
+
+        
+    
+    
+            var marker_2f578698519e375a95d8dd303fbb704c = L.marker(
+                [51.783333, -8.266667],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_9392f2ed2c63c0b33c412a940dd3cc33 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_2f578698519e375a95d8dd303fbb704c.setIcon(icon_9392f2ed2c63c0b33c412a940dd3cc33);
+        
+    
+        var popup_6051be83fcfa2e7844e928485d37a3c1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f97af27b622be0aa16d46c0768d910e = $(`<div id="html_0f97af27b622be0aa16d46c0768d910e" style="width: 100.0%; height: 100.0%;"><b>Roches Point</b><br>Type: Solar<br>Capacity: 325.0 MW</div>`)[0];
+                popup_6051be83fcfa2e7844e928485d37a3c1.setContent(html_0f97af27b622be0aa16d46c0768d910e);
+            
+        
+
+        marker_2f578698519e375a95d8dd303fbb704c.bindPopup(popup_6051be83fcfa2e7844e928485d37a3c1)
+        ;
+
+        
+    
+    
+            var marker_d86a0549a1c663ee8c562f2eb23b79b3 = L.marker(
+                [51.466667, -9.416667],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_88ba391939ffd1bea431ec5efbec7d93 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_d86a0549a1c663ee8c562f2eb23b79b3.setIcon(icon_88ba391939ffd1bea431ec5efbec7d93);
+        
+    
+        var popup_21be10f7a46339ebaca308995ae8feef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cf9bbca0065370d34f66732c24944769 = $(`<div id="html_cf9bbca0065370d34f66732c24944769" style="width: 100.0%; height: 100.0%;"><b>Sherkin Island</b><br>Type: Wind<br>Capacity: 525.94 MW</div>`)[0];
+                popup_21be10f7a46339ebaca308995ae8feef.setContent(html_cf9bbca0065370d34f66732c24944769);
+            
+        
+
+        marker_d86a0549a1c663ee8c562f2eb23b79b3.bindPopup(popup_21be10f7a46339ebaca308995ae8feef)
+        ;
+
+        
+    
+    
+            var marker_612a7ea9a96fb9dfbb805d859db5a265 = L.marker(
+                [51.466667, -9.416667],
+                {
+}
+            ).addTo(map_35907a8a963c5764a689bf3465e34d3b);
+        
+    
+            var icon_1fa37435c155e5cf5e1f6a70bf38d250 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_612a7ea9a96fb9dfbb805d859db5a265.setIcon(icon_1fa37435c155e5cf5e1f6a70bf38d250);
+        
+    
+        var popup_d406c63d653cf5e21a720a6d9ce4f03e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee9b351a1dc8cabeb019e5e51befbdbc = $(`<div id="html_ee9b351a1dc8cabeb019e5e51befbdbc" style="width: 100.0%; height: 100.0%;"><b>Sherkin Island</b><br>Type: Solar<br>Capacity: 852.53 MW</div>`)[0];
+                popup_d406c63d653cf5e21a720a6d9ce4f03e.setContent(html_ee9b351a1dc8cabeb019e5e51befbdbc);
+            
+        
+
+        marker_612a7ea9a96fb9dfbb805d859db5a265.bindPopup(popup_d406c63d653cf5e21a720a6d9ce4f03e)
+        ;
+
+        
+    
+</script>
+</html>

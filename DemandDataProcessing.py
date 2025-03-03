@@ -6,7 +6,7 @@ from datetime import datetime
 from scipy.fft import fft, ifft
 from FourierAnalysis import top_n
 
-#set matplotlib backend explicitly for PyCharm compatibility
+#tkagg works on my laptop
 matplotlib.use("TkAgg")
 
 #define the file path
